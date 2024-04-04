@@ -20,6 +20,8 @@
 *.mtc
 *.mtc0
 *.mtc0
+*.lof
+*.lot
 
 svg-inkscape/
 _markdown_report/
