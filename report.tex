@@ -1,20 +1,42 @@
-\documentclass{apuntes}
-
-\usepackage{lipsum}
+\documentclass[es]{uc3mreport}
 
 
-\selectlanguage{spanish}
-\graphicspath{{\currfileabsdir/img/}{./img/}}
+\usepackage{lipsum}  % generates dummy text
 
 
-\title{Título}
-\author{José Antonio Verde Jiménez (100472221)}
+% general config
+
+\graphicspath{{img/}}  % Images folder
+
+\author{
+    Luis Daniel Casais Mezquida -- 100429021\\
+    Jorge Lázaro Ruiz -- 100452172
+}
+\degree{Grado en Ingeniería Informática}
+\subject{LaTeXología}
+\year{2069-2420}  % academic year
+\shortauthor{\abbreviateauthor{Luis Daniel}{Casais Mezquida} y \abbreviateauthor{Jorge}{Lázaro Ruiz}}
+\lab{Práctica 0}
+\title{La mejor memoria de la historia}
+\proffesor{Perico de los Palotes}
+
 
 \begin{document}
-    \titulo
+    \makecover
 
+    \tableofcontents
+    % \listoffigures
+    % \listoftables
+
+
+    \section{Mi sección}
+    \lipsum[1]
+
+    \subsection{Mi subsección}
     \lipsum[2-4]
 
-    \section*{mememlkhjh}
+    \subsubsection{Mi subsubsección}
+    \lipsum[2-4]
+
 
 \end{document}
