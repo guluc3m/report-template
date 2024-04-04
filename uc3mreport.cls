@@ -2,12 +2,21 @@
 %% uc3mreport.cls : LaTeX Class File
 % =========================================================================== %
 % Authors: Luis Daniel Casais Mezquida <luisdaniel.casais@alumnos.uc3m.es> &
-           Jorge Lázaro Ruiz <jorge.lazaro@alumnos.uc3m.es>
+%          Jorge Lázaro Ruiz <jorge.lazaro@alumnos.uc3m.es>
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{uc3mreport}[UC3M report template]
 
+
+
+%----------
+% GENERAL PACKAGES
+%----------
+
+\RequirePackage{enumerate}
+\RequirePackage{import}
 \RequirePackage{etoolbox}
+
 
 
 %----------
