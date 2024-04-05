@@ -112,15 +112,16 @@
 % LINKS
 %----------
 
-\RequirePackage{hyperref}
+\RequirePackage[colorlinks]{hyperref}
 \RequirePackage{url}
 
+% coloring links
 \hypersetup{
-	colorlinks=true,
-	linkcolor=black,  % links to parts of the document (e.g. index) in black
-	urlcolor=blue  % links to resources outside the document in blue
+	linkcolor=blue,  % links to parts of the document
+	urlcolor=blue,  % links to resources outside the document
+	citecolor=blue,  % citations
+	filecolor=black  % local files
 }
-
 
 
 
@@ -144,13 +145,19 @@
 \RequirePackage{titletoc}
 \RequirePackage[titles]{tocloft}
 
-\setcounter{tocdepth}{2}  % until subsection
+\setcounter{tocdepth}{2}  % index until subsection
 
-\apptocmd{\tableofcontents}{\newpage}{}{}  % newpage after TOC
+% use simple pagestyle
+\tocloftpagestyle{simple}  % this doesn't work porque patata
+\pretocmd{\tableofcontents}{\pagestyle{simple}}{}{}
+\pretocmd{\listoffigures}{\pagestyle{simple}}{}{}
+\pretocmd{\listoftables}{\pagestyle{simple}}{}{}
+
+
+% newpage after TOC/LOF/LOT
+\apptocmd{\tableofcontents}{\newpage}{}{}
 \apptocmd{\listoffigures}{\newpage}{}{}  % newpage after LOF
 \apptocmd{\listoftables}{\newpage}{}{}  % newpage after LOT
-
-% colors
 
 % part
 \renewcommand\cftpartfont{
@@ -179,6 +186,13 @@
 	\bfseries
 	\color{azulUC3M}
 }
+
+% subsection
+\apptocmd{\cftsubsecfont}{\hypersetup{hidelinks}}{}{}
+
+% hile links LOF/LOT
+\apptocmd{\cftfigfont}{\hypersetup{hidelinks}}{}{}
+\apptocmd{\cfttabfont}{\hypersetup{hidelinks}}{}{}
 
 
 
@@ -215,11 +229,18 @@
 			\@subject\ \@year
 		}
 		\rfoot{
+			\hypersetup{hidelinks}
 			\color{azulUC3M}
-			Pg. \thepage\ \of\ \pageref{LastPage}
+			pg. \thepage\ \of\ \pageref{LastPage}
 		}
 	}
 
+	\fancypagestyle{simple} {
+		\fancyhf{}  % Clear header/footer
+		\renewcommand{\headrulewidth}{0pt}  % No header rule
+		\renewcommand{\footrulewidth}{0pt}  % No header rule
+		\cfoot{\color{azulUC3M}\thepage}
+	}
 \makeatother
 
 
@@ -256,6 +277,7 @@
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 
+
 %----------
 % MACROS
 %----------
@@ -290,6 +312,19 @@
 
 
 %----------
+% REPORT
+%----------
+
+\newenvironment{report}
+	{  % begin definition
+		\clearpage
+		\pagestyle{fancy}
+	}
+	{\newpage}  % end definition
+
+
+
+%----------
 % COVER
 %----------
 
@@ -307,8 +342,8 @@
 					\centering
 					\ifthenelse{\equal {#1} {old}}
 						{  % old
-							\includesvg[width=0.45\textwidth]{old_uc3m_logo.svg}
-							\vspace{1cm}
+							\includesvg[width=0.4\textwidth]{old_uc3m_logo.svg}
+							\vspace{0.5cm}
 						}
 						{  % new
 							\includesvg[width=\textwidth]{new_uc3m_logo.svg}
@@ -319,6 +354,7 @@
 				% subject
 				\begin{Large}
 					\textsl{\@degree}\\
+					\medskip
 					\@subject\\
 					\@year\\
 				\end{Large}
@@ -354,7 +390,6 @@
 		\end{titlepage}
 
 		\newpage
-		\pagestyle{fancy}
 	}
 
 \makeatother

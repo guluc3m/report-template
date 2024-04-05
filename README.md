@@ -32,12 +32,24 @@ El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar l
       Puede ser omitido.
 
 
+### Estilos de página
+La clase cuenta con dos estilos de página definidos:
+- `fancy`: Encabezado con denominación y título de la práctica, e identificación de los autores, pie de página con asignatura y año académico, número de página y páginas totales.
+- `simple`: Pie de página con la página actual. Éste es el estilo aplicado a los índices.
+
+
 ### Macros
 La clase también cuenta con ciertas macros predefinidas:
 - `\makecover`: Genera la portada con los atributos anteriormente definidos.
     - Puedes usar `\makecover[old]` para usar el logo antiguo (y objetivamente superior) de la UC3M.
 - `\blankpage`: Crea una página completamente en blanco.
 - `\abbreviateauthor{nombre(s)}{apellido{s}}`: Abrevia el nombre de un autor, útil para ponerlo en `\shortauthor`
+
+
+### Entornos
+La clase también cuenta con un entorno predefinido:
+- `\begin{report} \end{report}`: Empieza y acaba en página nueva, y aplica el estilo de página `fancy`.
+
 
 
 ## Compilación
