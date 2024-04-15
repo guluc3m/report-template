@@ -75,7 +75,7 @@ latexmk -cd -shell-escape -pdf report.tex
 ## VsCode
 Algunas extensiones útiles:
 - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-- [LaTeX](https://marketplace.visualstudio.com/items?itemName=mathematic.vscode-latex)
+- [LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex): Grammar checker.
 
 
 ## Ejemplos
