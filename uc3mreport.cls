@@ -60,8 +60,8 @@
 %----------
 
 \if@langes@pp  % spanish
-	\RequirePackage[spanish, es-tabla]{babel}
-	\RequirePackage[babel, spanish=spanish]{csquotes}
+	\RequirePackage[spanish,es-tabla,es-noindentfirst]{babel}
+	\RequirePackage[babel,spanish=spanish]{csquotes}
 	\selectlanguage{spanish}
 
 	\def\of{de}
@@ -70,7 +70,7 @@
 
 \if@langen@pp  % english
 	\RequirePackage[english]{babel}
-	\RequirePackage[babel, english=american]{csquotes}
+	\RequirePackage[babel,english=american]{csquotes}
 	\selectlanguage{english}
 
 	\def\of{of}
@@ -273,8 +273,9 @@
 \RequirePackage{amsmath, amssymb, amsfonts, amsthm, mathtools}
 
 % usefull macros
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}%
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}%
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 
 
 
