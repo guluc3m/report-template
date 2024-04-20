@@ -72,10 +72,12 @@ latexmk -cd -shell-escape -pdf report.tex
 ```
 
 
-## VsCode
+## VS Code
 Algunas extensiones útiles:
 - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-- [LaTeX](https://marketplace.visualstudio.com/items?itemName=mathematic.vscode-latex)
+    - Si estás usando esta extensión, por favor añade el parámetro `-shell-escape` (ver [LaTeX Workshop FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk))
+- [LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex): Corrector ortográfico.
+  - Puedes cambiar el idioma del corrector a través del parámetro `ltex.language` en la configuración de VS Code.
 
 
 ## Ejemplos
