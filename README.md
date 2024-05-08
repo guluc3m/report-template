@@ -26,9 +26,11 @@ El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar l
     - `\year`: Año académico, e.g. `2023-2024`.
     - `\lab`: Denominación del laboratorio o práctica, e.g. `Práctica 0`.
     - `\title`: Título del laboratorio o práctica.
-    - `\proffesor`: Nombre del profesor responsable.  
+    - `\professor`: Nombre del profesor responsable.  
       Puede ser omitido.
     - `\shortauthor`: Identificación pequeña del autor o autores, la cual aparecerá en el encabezado de cada página. Puede ser el nombre del equipo, e.g. `Equipo 02`, o el nombre corto del autor, e.g. `J. Ibarra`.
+      Puede ser omitido.
+    - `\shorttitle`: Formato corto del título que poner en el _header_ en lugar de `<lab>: <title>`.
       Puede ser omitido.
 
 
@@ -72,6 +74,9 @@ latexmk -cd -shell-escape -pdf report.tex
 ```
 
 
+<!-- TODO: how to use extra package stuff (multifigures w/ \subfigure, tables, \tablenote, etc.) -->
+
+
 ## VS Code
 Algunas extensiones útiles:
 - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
@@ -82,4 +87,5 @@ Algunas extensiones útiles:
 
 ## Ejemplos
 Aquí te dejamos algunos ejemplos de memorias hechas con esta plantilla:
-- [ldcas-uc3m/TAC-P1](https://github.com/ldcas-uc3m/TAC-P1/tree/main/report)
+- [ldcas-uc3m/TAC-P1](https://github.com/ldcas-uc3m/TAC-P1/tree/main/report) (usando una versión temprana de la plantilla)
+- [ldcas-uc3m/VA-PF](https://github.com/ldcas-uc3m/VA-PF/tree/main/report)
