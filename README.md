@@ -19,8 +19,8 @@ El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar l
     ```latex
     \graphicspath{{img/}}
     ```
-    > [!NOTE]
-    > Ten en cuenta que la portada requiere de imágenes que serán buscadas en la raíz de esta carpeta
+> [!NOTE]
+> Ten en cuenta que la portada requiere de imágenes que serán buscadas en la raíz de esta carpeta
 - La portada y otros elementos dependen de la configuración de los "distintos atributos":
     - `\author`: Autor, o autores. Si se añade más de uno, añade `\\` entre nombres. Es recomendable añadir también el NIA después del nombre, y precedido por `--`.
     - `\degree`: Grado que se cursa.
@@ -89,11 +89,11 @@ latexmk -cd -shell-escape -pdf report.tex
 ## VS Code
 Algunas extensiones útiles:
 - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-    > [!IMPORTANT]
-    > Si estás usando esta extensión, por favor añade el parámetro `-shell-escape` (ver [LaTeX Workshop FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk))
+> [!IMPORTANT]
+> Si estás usando esta extensión, por favor añade el parámetro `-shell-escape` (ver [LaTeX Workshop FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk))
 - [LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex): Corrector ortográfico.
-    > [!TIP]
-    > Puedes cambiar el idioma del corrector a través del parámetro `ltex.language` en la configuración de VS Code
+> [!TIP]
+> Puedes cambiar el idioma del corrector a través del parámetro `ltex.language` en la configuración de VS Code
 
 
 ## Ejemplos
