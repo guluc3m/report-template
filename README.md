@@ -15,20 +15,26 @@ El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar l
     ```latex
     \documentclass[en]{uc3mreport}  % inglés
     ```
-- También puedes configurar la (sub)carpeta para las imágenes, y así al usar una imagen no es necesario especificar este nombre (**NOTA:** ten en cuenta que la portada requiere de imágenes que serán buscadas en la raíz de esta carpeta).
+- También puedes configurar la (sub)carpeta para las imágenes, y así al usar una imagen no es necesario especificar este nombre.
     ```latex
     \graphicspath{{img/}}
     ```
+    > [!NOTE]
+    > Ten en cuenta que la portada requiere de imágenes que serán buscadas en la raíz de esta carpeta
 - La portada y otros elementos dependen de la configuración de los "distintos atributos":
     - `\author`: Autor, o autores. Si se añade más de uno, añade `\\` entre nombres. Es recomendable añadir también el NIA después del nombre, y precedido por `--`.
     - `\degree`: Grado que se cursa.
     - `\subject`: Asignatura.
+    - `\group`: Número del grupo, e.g. `89`.
     - `\year`: Año académico, e.g. `2023-2024`.
     - `\lab`: Denominación del laboratorio o práctica, e.g. `Práctica 0`.
     - `\title`: Título del laboratorio o práctica.
     - `\professor`: Nombre del profesor responsable.  
       Puede ser omitido.
-    - `\shortauthor`: Identificación pequeña del autor o autores, la cual aparecerá en el encabezado de cada página. Puede ser el nombre del equipo, e.g. `Equipo 02`, o el nombre corto del autor, e.g. `J. Ibarra`.
+    - `\author`: Autor o autores. Usar `\\` para separarlos.
+    - `\team`: Nombre del equipo, e.g. `Equipo 69`.
+      Puede ser omitido.
+    - `\shortauthor`: Identificación pequeña del autor o autores, la cual aparecerá en el encabezado de cada página. Puede ser el nombre del equipo, e.g. `Equipo 02`, o el nombre corto del autor, e.g. `J. Ibarra` (o `\abbreviateauthor{Javier}{Ibarra Ramos}`).
       Puede ser omitido.
     - `\shorttitle`: Formato corto del título que poner en el _header_ en lugar de `<lab>: <title>`.
       Puede ser omitido.
@@ -36,7 +42,8 @@ El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar l
 
 ### Estilos de página
 La clase cuenta con dos estilos de página definidos:
-- `fancy`: Encabezado con denominación y título de la práctica, e identificación de los autores, pie de página con asignatura y año académico, número de página y páginas totales.
+- `fancy`: Encabezado con denominación y título de la práctica, e identificación de los autores, pie de página con asignatura y año académico, número de página y páginas totales.  
+  En el autor, si se define `\shortauthor` se usará ese. Si no, y está definido `\team`, se usará el equipo. En cualquier otro caso se usará el autor definido.
 - `simple`: Pie de página con la página actual. Éste es el estilo aplicado a los índices.
 
 
@@ -64,8 +71,10 @@ Primero debes instalar LaTeX.
     sudo tlmgr install latexmk
     ```
 
-Como vamos a usar archivos SVG, necesitas instalar [Inkscape](https://inkscape.org/).  
-Si estás en Windows, asegúrate de añadir el ejecutable al `PATH` (suele estar en `C:\Program Files\Inkscape\bin\`).
+> [!IMPORTANT]
+> Como vamos a usar archivos SVG, necesitas instalar [Inkscape](https://inkscape.org/).  
+> 
+> Si estás en Windows, asegúrate de añadir el ejecutable al `PATH` (suele estar en `C:\Program Files\Inkscape\bin\`).
 
 
 Para compilar la memoria, usa:
@@ -80,9 +89,11 @@ latexmk -cd -shell-escape -pdf report.tex
 ## VS Code
 Algunas extensiones útiles:
 - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-    - Si estás usando esta extensión, por favor añade el parámetro `-shell-escape` (ver [LaTeX Workshop FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk))
+    > [!IMPORTANT]
+    > Si estás usando esta extensión, por favor añade el parámetro `-shell-escape` (ver [LaTeX Workshop FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk))
 - [LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex): Corrector ortográfico.
-  - Puedes cambiar el idioma del corrector a través del parámetro `ltex.language` en la configuración de VS Code.
+    > [!TIP]
+    > Puedes cambiar el idioma del corrector a través del parámetro `ltex.language` en la configuración de VS Code
 
 
 ## Ejemplos

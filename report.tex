@@ -4,26 +4,25 @@
 \usepackage{lipsum}  % generates dummy text
 
 
-% silence ht warnings
-\usepackage{silence}
-\WarningFilter{latex}{`h' float specifier changed to `ht'}
-
 
 % general config
 
 \graphicspath{{img/}}  % Images folder
 
+\degree{Grado en Ingeniería Informática}
+\subject{LaTeXología}
+\year{2069-2420}  % academic year
+\group{420}
 \author{
     Luis Daniel Casais Mezquida -- 100429021\\
     Jorge Lázaro Ruiz -- 100452172
 }
-\degree{Grado en Ingeniería Informática}
-\subject{LaTeXología}
-\year{2069-2420}  % academic year
-\shortauthor{\abbreviateauthor{Luis Daniel}{Casais Mezquida} y \abbreviateauthor{Jorge}{Lázaro Ruiz}}
+\team{Equipo 69}  % optional
+\shortauthor{\abbreviateauthor{Luis Daniel}{Casais Mezquida} y \abbreviateauthor{Jorge}{Lázaro Ruiz}}  % optional
 \lab{Práctica 0}
 \title{La mejor memoria de la historia}
-\professor{Perico de los Palotes}
+% \shorttitle{La mejor memoria de la historia}  % optional
+\professor{Perico de los Palotes}  % optional
 
 
 \begin{document}
@@ -35,11 +34,14 @@
 
     % contenidos
     \begin{report}
+        \part{Mi parte}
+        \lipsum[1]
+
         \section{Mi sección}
         \lipsum[1]
 
         \subsection{Mi subsección}
-        \lipsum[2-4]
+        \lipsum[2-4]\footnote{Caca de la vaca Paca.}
 
         \subsubsection{Mi subsubsección}
         \lipsum[2-4]

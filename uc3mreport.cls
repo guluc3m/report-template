@@ -49,13 +49,17 @@
 \renewcommand{\baselinestretch}{1.15}
 \parskip=6pt
 
-\RequirePackage[utf8]{inputenc}  % utf-8
-\RequirePackage[T1]{fontenc}
-\RequirePackage{mathptmx}  % times new roman
-
 % blue footnote line
 \preto{\footnoterule}{\color{azulUC3M}}
 \appto{\footnoterule}{\color{black}}
+
+%----------
+% ENCODING & FONTS
+%----------
+
+\RequirePackage[utf8]{inputenc}  % utf-8
+\RequirePackage[T1]{fontenc}
+\RequirePackage{mathptmx}  % times new roman
 
 
 
@@ -68,8 +72,10 @@
 	\RequirePackage[babel,spanish=spanish]{csquotes}
 	\selectlanguage{spanish}
 
-	\def\of{de}
-	\def\professorname{Profesor}
+	\def\@text@of{de}
+	\def\@text@professor{Profesor}
+	\def\@text@group{Grupo}
+	\def\@text@group@abbr{grp.}
 \fi
 
 \if@langen@pp  % english
@@ -77,8 +83,11 @@
 	\RequirePackage[babel,english=american]{csquotes}
 	\selectlanguage{english}
 
-	\def\of{of}
-	\def\professorname{Professor}
+	\def\@text@of{of}
+	\def\@text@professor{Professor}
+	\def\@text@group{Profesor}
+	\def\@text@group{Group}
+	\def\@text@group@abbr{grp.}
 \fi
 
 
@@ -91,11 +100,13 @@
 % setup variables
 
 \makeatletter
-	\newcommand{\degree}[1]{\gdef\@degree{#1}}
-	\newcommand{\subject}[1]{\gdef\@subject{#1}}
+	\newcommand{\degree}[1]{\gdef\@degree{#1}}  % name of the degree
+	\newcommand{\subject}[1]{\gdef\@subject{#1}}  % name of the subject
+	\newcommand{\group}[1]{\gdef\@group{#1}}  % group number
+	\newcommand{\team}[1]{\gdef\@team{#1}}  % team name (optional)
 	\renewcommand{\year}[1]{\gdef\@year{#1}}  % academic year
 	\newcommand{\lab}[1]{\gdef\@lab{#1}}  % Lab 1, Exercise 3, etc.
-	\newcommand{\professor}[1]{\gdef\@professor{#1}}
+	\newcommand{\professor}[1]{\gdef\@professor{#1}}  % name of the professor (optional)
 	\newcommand{\shortauthor}[1]{\gdef\@shortauthor{#1}}  % teamname, or several authors names (optional)
 	\newcommand{\shorttitle}[1]{\gdef\@shorttitle{#1}}  % short title (optional)
 \makeatother
@@ -134,11 +145,16 @@
 %----------
 
 \RequirePackage{sectsty}
+\RequirePackage{titlesec}
 
 \allsectionsfont{\color{azulUC3M}}  % color titles
 
-\preto{\part}{\newpage}  % new page before part
+\preto{\part}{\clearpage}  % new page before part
 
+\titlespacing*{\subsubsection}
+	{0em}  % left margin
+	{1em}  % vspace above
+	{0.2em}  % vspace below
 
 
 
@@ -226,25 +242,27 @@
 		}
 		\fancyhead[R]{
 			\color{azulUC3M}
-			\@subject~\@year
+			\@subject, \@text@group@abbr~\@group
 		}
 		% footer
 		\renewcommand{\footrulewidth}{0.4pt}
 		\fancyfoot[L]{
 			\color{azulUC3M}
-			\ifdef{\@shortauthor}{\@shortauthor}{\@author}
+			\ifdef{\@shortauthor}
+				{\@shortauthor}  % then
+				{\ifdef{\@team}{\@team}{\@author}}  % else
 		}
 		\fancyfoot[R]{
 			\hypersetup{hidelinks}
 			\color{azulUC3M}
-			pg. \thepage\ \of\ \pageref{LastPage}
+			pg. \thepage~\@text@of~\pageref{LastPage}
 		}
 	}
 
 	\fancypagestyle{simple} {
 		\fancyhf{}  % Clear header/footer
 		\renewcommand{\headrulewidth}{0pt}  % No header rule
-		\renewcommand{\footrulewidth}{0pt}  % No header rule
+		\renewcommand{\footrulewidth}{0pt}  % No footer rule
 		\fancyfoot[C]{\color{azulUC3M}\thepage}
 	}
 \makeatother
@@ -359,7 +377,7 @@
 		\clearpage
 		\pagestyle{fancy}
 	}
-	{\newpage}  % end definition
+	{\clearpage}  % end definition
 
 
 
@@ -379,7 +397,7 @@
 				% university logo
 				\begin{figure}[H]
 					\centering
-					\ifthenelse{\equal {#1} {old}}
+					\ifthenelse{\equal{#1} {old}}
 						{  % old
 							\includesvg[width=0.4\textwidth]{old_uc3m_logo.svg}
 							\vspace{0.5cm}
@@ -394,8 +412,8 @@
 				\begin{Large}
 					\textsl{\@degree}\\
 					\medskip
-					\@subject\\
-					\@year\\
+					\@subject~\@year\\
+					\@text@group~\@group
 				\end{Large}
 				% \vspace{1.5cm}
 				\vfill
@@ -403,7 +421,7 @@
 				% title
 				\Large\textsl{\@lab}\\
 				\medskip
-				\Huge ``\@title''\\
+				\Huge``\@title''\\
 				%
 				\rule{0.75\textwidth}{0.1mm}\\
 				\vspace*{0.5cm}
@@ -412,13 +430,18 @@
 				\begin{LARGE}
 					\@author\\
 				\end{LARGE}
+				\ifdef{\@team} {
+					\medskip
+					\Large\textsl{\@team}\\
+				}
+				{}
 				%
 				\vfill
 				%
 				% professor
-				\ifdef{\@professor}{
+				\ifdef{\@professor} {
 					\begin{Large}
-						\textsl{\professorname:}\\
+						\textsl{\@text@professor}\\
 						\@professor\\
 					\end{Large}
 				}
