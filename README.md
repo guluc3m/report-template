@@ -167,7 +167,7 @@ Algunas extensiones útiles:
 - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 > [!IMPORTANT]
 > Si estás usando esta extensión, por favor añade el parámetro `-shell-escape` (ver [LaTeX Workshop FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk))
-- [LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex): Corrector ortográfico.
+- [LTeX+](https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus): Corrector ortográfico.
 > [!TIP]
 > Puedes cambiar el idioma del corrector a través del parámetro `ltex.language` en la configuración de VS Code
 
