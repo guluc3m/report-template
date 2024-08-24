@@ -14,7 +14,6 @@
 %----------
 
 \RequirePackage{enumerate}
-\RequirePackage{import}
 \RequirePackage{etoolbox}
 
 
@@ -146,10 +145,13 @@
 
 \RequirePackage{sectsty}
 \RequirePackage{titlesec}
+\RequirePackage{placeins}  % \FloatBarrier
+
 
 \allsectionsfont{\color{azulUC3M}}  % color titles
 
 \preto{\part}{\clearpage}  % new page before part
+\preto{\section}{\FloatBarrier}  % prevent floats (figures, tables) to be outside their section
 
 \titlespacing*{\subsubsection}
 	{0em}  % left margin
