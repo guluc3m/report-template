@@ -9,6 +9,7 @@
 % general config
 
 \graphicspath{{img/}}  % Images folder
+\addbibresource{references.bib}  % bibliography file
 
 \degree{Grado en Ingeniería Informática}
 \subject{LaTeXología}
@@ -26,6 +27,8 @@
 \professor{Perico de los Palotes}  % optional
 
 
+% report
+
 \begin{document}
     \makecover
 
@@ -36,7 +39,7 @@
     % contenidos
     \begin{report}
         \part{Mi parte}
-        \lipsum[1]
+        \lipsum[1] \parencite{cicero45finibus}
 
         \section{Mi sección}
         \lipsum[1]
@@ -44,9 +47,23 @@
         \subsection{Mi subsección}
         \lipsum[2-4]\footnote{Caca de la vaca Paca.}
 
+
         \subsubsection{Mi subsubsección}
         \lipsum[2-4]
     \end{report}
 
+
+    % bibliography
+    \label{bibliography}
+    \part{Referencias}
+    \printbibliography
+    % \printbibliography[heading=bibintoc,title={Referencias}]  % alternative
+
+    % appendices
+    \begin{appendices}
+        \part{Apéndices}  % optional
+        \section{Mi apéndice}
+        \lipsum[1]
+    \end{appendices}
 
 \end{document}

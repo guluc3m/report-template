@@ -75,6 +75,7 @@
 	\def\@text@professor{Profesor}
 	\def\@text@group{Grupo}
 	\def\@text@group@abbr{grp.}
+	\def\@text@references{Referencias}
 \fi
 
 \if@langen@pp  % english
@@ -87,6 +88,7 @@
 	\def\@text@group{Profesor}
 	\def\@text@group{Group}
 	\def\@text@group@abbr{grp.}
+	\def\@text@references{References}
 \fi
 
 
@@ -181,36 +183,56 @@
 \apptocmd{\listoffigures}{\newpage}{}{}  % newpage after LOF
 \apptocmd{\listoftables}{\newpage}{}{}  % newpage after LOT
 
-% part
-\renewcommand\cftpartfont{
-	\Large
-	\hypersetup{hidelinks}
-	\bfseries
-	\color{azulUC3M}
-}
-\renewcommand\cftpartpagefont{
-	\Large
-	\hypersetup{hidelinks}
-	\bfseries
-	\color{azulUC3M}
-}
 
-% section
-\renewcommand\cftsecfont{
-	\large
-	\hypersetup{hidelinks}
-	\bfseries
-	\color{azulUC3M}
-}
-\renewcommand\cftsecpagefont{
-	\large
-	\hypersetup{hidelinks}
-	\bfseries
-	\color{azulUC3M}
-}
+\makeatletter
+\titlecontents{part}
+	[-5pt]  % left margin
+	{\addvspace{1pc}}  % above
+	{  % before with label
+		\Large
+		\hypersetup{hidelinks}
+		\bfseries
+		\color{azulUC3M}
+		\@chapapp~\thecontentslabel.\enspace  % label
+	}
+	{  % before without label
+		\Large
+		\hypersetup{hidelinks}
+		\bfseries
+		\color{azulUC3M}
+	}
+	{  % filler and page
+		\Large
+		\color{azulUC3M}
+		\hfill
+		\hypersetup{hidelinks}
+		\bfseries
+		\contentspage
+	}
+\makeatother
 
-% subsection
-\apptocmd{\cftsubsecfont}{\hypersetup{hidelinks}}{}{}
+
+% sections
+\titlecontents{section}
+	[0pt]  % left margin
+	{}  % above
+	{  % before with label
+		\large
+		\hypersetup{hidelinks}
+		\bfseries
+		\color{azulUC3M}
+		\contentsmargin{0pt}\thecontentslabel.\enspace
+	}
+	{\large\contentsmargin{0pt}}  % before without label
+	{\large\hfill\color{azulUC3M}\contentspage}  % filler and page
+
+% subsections
+\titlecontents{subsection}[10pt]
+	{}
+	{\hypersetup{hidelinks}\contentsmargin{0pt}\thecontentslabel.\enspace}
+	{\contentsmargin{0pt}}
+	{\titlerule*[.7pc]{.}\contentspage}
+
 
 % hile links LOF/LOT
 \apptocmd{\cftfigfont}{\hypersetup{hidelinks}}{}{}
@@ -323,6 +345,7 @@
 	labelfont={bf,color=azulUC3M},
 	textfont=it
 }
+
 
 %----------
 % MATH
@@ -457,3 +480,28 @@
 	}
 
 \makeatother
+
+
+%----------
+% REFERENCES
+%----------
+
+\RequirePackage[backend=biber, style=ieee, isbn=false, sortcites, maxbibnames=6, minbibnames=1]{biblatex} % IEEE citation style
+
+% force line break when necessary
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+\setcounter{biburllcpenalty}{9000}
+
+
+
+%----------
+% APPENDIXES
+%----------
+
+\RequirePackage[header]{appendix}
+
+\AtBeginEnvironment{appendices}{%
+	\cleardoublepage
+	\setcounter{footnote}{0}  % reset footnote counter
+}

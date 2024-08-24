@@ -160,6 +160,11 @@ El paquete [`subcaption`](https://ctan.org/pkg/subcaption) incluye el entorno `s
 ### Macros
 
 
+### Bibliografía
+
+
+### Apéndices
+
 
 
 ## VS Code
