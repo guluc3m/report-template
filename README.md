@@ -74,7 +74,7 @@ Primero debes instalar LaTeX.
     ```
 
 > [!IMPORTANT]
-> Como vamos a usar archivos SVG, necesitas instalar [Inkscape](https://inkscape.org/).  
+> Como vamos a usar archivos SVG, necesitas instalar [Inkscape](https://inkscape.org/).
 > 
 > Si estás en Windows, asegúrate de añadir el ejecutable al `PATH` (suele estar en `C:\Program Files\Inkscape\bin\`).
 
@@ -86,13 +86,96 @@ latexmk -cd -shell-escape -pdf report.tex
 
 
 ## How to...?
-<!-- TODO: how to use extra package stuff (multifigures w/ \subfigure, tables, \tablenote, etc.) -->
-Obviamente, _Google/DuckDuckGo es tu amigo_, así que no dudes en preguntarle cosas. Más allá de ellos, [LaTeX Stack Exchange](https://tex.stackexchange.com/) es el StackOverflow para LaTeX, un foro para hacer preguntas y encontrar respuestas.
+Obviamente, _Google/DuckDuckGo es tu amigo_, así que no dudes en preguntarle cosas. También puedes contar con la [documentación de Overleaf](https://www.overleaf.com/learn), una magnífica herramienta donde aprender cosas de LaTeX. Más allá de ellos, [LaTeX Stack Exchange](https://tex.stackexchange.com/) es el StackOverflow para LaTeX, un foro para hacer preguntas y encontrar respuestas.
 
 Aquí comentaremos algunos paquetes y trozos de código que hemos encontrado útiles a la hora de realizar las memorias. [CTAN (Comprehensive TeX Archive Network)](https://ctan.org/) es el repositorio donde se alojan todos los paquetes de LaTeX, y todos ellos incluyen documentación. Si te atascas con algún paquete, o quieres investigar más, búscalo aquí.
 
 
-### Organización del código
+### Formato del texto
+Se realiza a través de los siguientes comandos:
+- **Negrita**: `\textbf{...}`
+- *Cursiva*: `\textit{...}`
+- <ins>Subrayado</ins>: `\underline{...}`
+- `Verbatim`: `\texttt{...}`
+- [URLs](https://noot.space/): `\href{https://test.com}{...}` (parte del paquete [hyperref](https://ctan.org/pkg/hyperref?lang=en))
+
+
+### Párrafos y saltos de línea
+LaTeX está pensado para permitir romper las líneas del código fuente sin romper las líneas del documento.
+
+Por lo tanto, para empezar un nuevo párrafo, es necesario dejar una línea (o más) en blanco:
+```latex
+Y así fue como me convertí en un maestro Pokémon.
+
+Pero el verdadero tesoro fueron los amigos que hicimos por el camino.
+```
+
+> [!NOTE]
+> El resto de líneas en blanco son ignoradas.
+
+Para insertar un salto de línea manual, es necesario usar `\\`:
+```latex
+Mi carro me lo robaron, estando de romería\\
+mi carro me lo robaron, anoche cuando dormía
+```
+
+
+### Estructura del documento
+Puedes dividir jerárquicamente tu documento en distintos tipos de secciones. Dependiendo del tipo de documento, hay más o menos, pero para éste (`article`), tienes los siguientes:
+- `\part`: Parte; e.g. `I`. Empieza en una página nueva.
+- `\section`: Sección, o capítulo; e.g. `1.`.
+- `\subsection`: Subsección, o apartado; e.g. `1.1.`.
+- `\subsubsection`: Subapartado; e.g. `1.1.1.`.
+
+Para empezar basta con usar el comando seguido del nombre de la sección:
+```latex
+\section{Mi sección}
+```
+
+> [!NOTE]
+> Las secciones se enumeran automáticamente.
+
+
+### Índices
+Las partes se marcarán automáticamente en el índice, a no ser que incluyas un asterisco en el comando, e.g.:
+```latex
+\section*{Mi sección secreta}
+```
+
+Hay diferentes índices que puedes incluir:
+```latex
+\tableofcontents  % índice de contenidos
+\listoffigures  % índice de figuras
+\listoftables  % índice de tablas
+```
+> [!NOTE]
+> Al usar la plantilla `uc3mreport`, cada índice se creará en una página nueva.
+
+
+### Páginas nuevas
+Usa `\newpage` para crear una página nueva.
+
+
+### Referencias
+Puedes marcar cualquier punto del documento para referenciarlo más tarde. Ésto es parte del paquete [hyperref](https://ctan.org/pkg/hyperref?lang=en).
+
+Puedes crear una marca con `label{<id>}`, y luego referenciarlo de varias formas. Dependiendo de dónde esté la marca, si es un párrafo, una figura, una tabla, una ecuación, etc., se comporta de manera ligeramente distinta.
+- `\ref{<id>}`: Pone el número de la sección/figura/etc. a la que se refiere.
+- `\nameref{<id>}`: Pone el nombre de la sección/figura/etc. a la que se refiere.
+- `\pageref{<id>}`: Pone el número de página de la sección/figura/etc. a la que se refiere.
+
+E.g.:
+```latex
+\section{Introducción}\label{sec:introduccion}
+
+...
+
+Como mencioné en la Sección \ref{sec:introduccion}, \textit{\nameref{sec:introduccion}}...
+```
+
+
+### Notas a pie de página
+Se usa el comando `\footnote{...}`. Se enumeran automáticamente.
 
 
 ### Figuras
@@ -111,50 +194,71 @@ Veamos un ejemplo rápido para insertar una imagen _raster_ (PNG, JPG), aquí lo
 ```
 
 Los parámetros más importantes son los siguientes:
-- Localización de la figura (parámetro del entorno `figure`). Lo más recomendable es usar `htb`, el cual intenta colocar la figura en el mejor sitio, buscando que esté o aproximadamente aquí (`h`ere), al principio de la siguiente página (`t`op), o al final de la siguiente página (`b`ottom). Si quieres que la figura aparezca exactamente en este punto del texto, usa `H`.  
-  También se puede hacer uso de `\FloatBarrier` (del paquete [`placeins`](https://ctan.org/pkg/placeins)) para prevenir que cualquier imagen pase de ese punto. En esta plantilla, ninguna imagen pasará de la sección en la que se ha incrustado.
-- Tamaño de la figura (parámetro `width` de `\includegraphics`). Escala la figura hasta el tamaño especificado. Lo más recomendable es que sea un porcentaje del ancho del texto, por ejemplo, un 80% con `width=0.8\textwidth`.
-- _Path_ del archivo (argumento de `\includegraphics`). Esto indica dónde está localizado el archivo. En caso de haber configurado `\graphicspath` (lo cual es recomendable), la ruta es relativa a esa carpeta. En este caso, sería `figura.png`.
-- _Caption_. La leyenda de la figura. Pon aquí el texto que quieras, el cual también se verá reflejado en el índice de figuras en caso de existir. En caso de querer un texto diferente en el índice, usa `\caption[<texto del índice>]{<texto del documento>}`.
-- _Label_. Crea una referencia a la figura, la cual se puede luego usar para referenciar la figura, por ejemplo usando `Figura \ref{fig:figura}`. Es recomendable siempre referenciar las figuras en el texto, sobre todo si se usa una localización no exacta.
+- **Localización** (parámetro del entorno `figure`). Lo más recomendable es usar `htb`, el cual intenta colocar la figura en el mejor sitio, buscando que esté o aproximadamente aquí (`h`ere), al principio de la siguiente página (`t`op), o al final de la siguiente página (`b`ottom). Si quieres que la figura aparezca exactamente en este punto del texto, usa `H`.  
+  > [!NOTE]
+  > También se puede hacer uso de `\FloatBarrier` (del paquete [`placeins`](https://ctan.org/pkg/placeins)) para prevenir que cualquier imagen pase de ese punto. En esta plantilla, ninguna imagen pasará de la sección en la que se ha incrustado.
+- **Tamaño** (parámetro `width` de `\includegraphics`). Escala la figura hasta el tamaño especificado. Lo más recomendable es que sea un porcentaje del ancho del texto, por ejemplo, un 80% con `width=0.8\textwidth`.
+- **_Path_ del archivo** (argumento de `\includegraphics`). Esto indica dónde está localizado el archivo. En caso de haber configurado `\graphicspath` (lo cual es recomendable), la ruta es relativa a esa carpeta. En este caso, sería `figura.png`.
+- **_Caption_**. La leyenda de la figura. Pon aquí el texto que quieras, el cual también se verá reflejado en el índice de figuras en caso de existir. En caso de querer un texto diferente en el índice, usa `\caption[<texto del índice>]{<texto del documento>}`.
+- **_Label_**. Crea una referencia a la figura, la cual se puede luego usar para referenciar la figura, por ejemplo usando `Figura \ref{fig:figura}`. Es recomendable siempre referenciar las figuras en el texto, sobre todo si se usa una localización no exacta. Más información en el apartado [Referencias](#referencias)
 
 #### Figuras vectoriales
-Para insertar imágenes SVG, usa `\includesvg` en lugar de `\includegraphics`, el cual es parte del paquete [`svg`](https://ctan.org/pkg/svg) (incluído en la clase).
+Para insertar imágenes SVG, usa `\includesvg` en lugar de `\includegraphics`, el cual es parte del paquete [svg](https://ctan.org/pkg/svg) (incluído en la clase).
 
+> [!NOTE]
+> Si la imagen SVG contiene texto, es recomendable usar el parámetro `inkscapelatex=false` para evitar que el texto de la imagen sea formateado por LaTeX.  
+> 
+> E.g.:
+> ```latex
+> \begin{figure}[htb]
+>   \centering
+>   \includesvg[inkscapelatex=false,width=0.8\textwidth]{figura.svg}
+>   \caption{Mi figura}
+>   \label{fig:figura}
+> \end{figure}
+> ```
 
-<!-- TODO: drawio & svg text -->
+> [!NOTE]
+> Si el SVG viene de [draw.io](https://www.drawio.com/), recuerda quitar el _wrapping_ y el texto formateado antes de exportarlo. Más información [aquí](https://www.drawio.com/doc/faq/svg-export-text-problems#disable-formatted-text-and-word-wrap).
 
 
 #### Sub-figuras
-El paquete [`subcaption`](https://ctan.org/pkg/subcaption) incluye el entorno `subfigure`, para crear distintas sub-figuras dentro de la misma figura. Puedes especificar el tamaño de cada sub-figura, y lo recomendable es dejar el tamaño de las imágenes dentro de cada figura en el tamaño de línea (`\linewidth`). Por ejemplo, para tener dos figuras una al lado de la otra:
+El paquete [`subcaption`](https://ctan.org/pkg/subcaption) incluye el entorno `subfigure`, para crear distintas sub-figuras dentro de la misma figura. Puedes especificar el tamaño de cada sub-figura, y lo recomendable es dejar el tamaño de las imágenes dentro de cada figura en el tamaño de línea (`\linewidth`).  
+
+Por ejemplo, para tener dos figuras una al lado de la otra:
 ```latex
 \begin{figure}[htb]
   \centering
+
   \begin{subfigure}{.5\textwidth}
     \includegraphics[width=\linewidth]{fig1.png}
     \caption{Una cosa}
     \label{fig:fig1}
   \end{subfigure}%
+
   \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{fig2.png}
     \caption{Otra cosa}
     \label{fig:fig2}
   \end{subfigure}
+
   \caption{Dos cosas}
 \end{figure}
 ```
 
 
 ### Tablas
-
+<!-- \tablenote -->
 
 ### Ecuaciones
-
+<!-- incluír listado de ecuaciones -->
 
 
 ### Bloques de código
 
+
+### Organización del código
 
 
 ### Macros
@@ -172,6 +276,10 @@ Algunas extensiones útiles:
 - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 > [!IMPORTANT]
 > Si estás usando esta extensión, por favor añade el parámetro `-shell-escape` (ver [LaTeX Workshop FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk))
+
+> [!TIP]
+> Puedes habilitar el conteo de palabras estableciendo `latex-workshop.wordcount` a `onSave` en los ajustes. Más información [aquí](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#counting-words).
+
 - [LTeX+](https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus): Corrector ortográfico.
 > [!TIP]
 > Puedes cambiar el idioma del corrector a través del parámetro `ltex.language` en la configuración de VS Code
@@ -181,3 +289,10 @@ Algunas extensiones útiles:
 Aquí te dejamos algunos ejemplos de memorias hechas con esta plantilla:
 - [ldcas-uc3m/TAC-P1](https://github.com/ldcas-uc3m/TAC-P1/tree/main/report) (usando una versión temprana de la plantilla)
 - [ldcas-uc3m/VA-PF](https://github.com/ldcas-uc3m/VA-PF/tree/main/report)
+
+
+<!--
+## Más información
+- [Documentación de Overleaf](https://www.overleaf.com/learn): Una magnífica herramienta donde aprender cosas de LaTeX.
+- [The Comprehensive TeX Archive Network](https://ctan.org/?lang=en): Un repositorio de paquetes de LaTeX, con su documentación.
+-->

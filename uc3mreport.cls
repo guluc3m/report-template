@@ -2,7 +2,7 @@
 %% uc3mreport.cls : LaTeX Class File
 % =========================================================================== %
 % Authors: Luis Daniel Casais Mezquida <luisdaniel.casais@alumnos.uc3m.es> &
-%          Jorge Lázaro Ruiz <jorge.lazaro@alumnos.uc3m.es>
+%          Jose Antonio Verde Jiménez <joseaverde@protonmail.com>
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{uc3mreport}[UC3M report template]
@@ -493,6 +493,14 @@
 \setcounter{biburlucpenalty}{9000}
 \setcounter{biburllcpenalty}{9000}
 
+% allow for multiple footcites
+\RequirePackage{fnpct}
+\AdaptNote\footcite{oo+m}[footnote]{%
+  \setfnpct{dont-mess-around}%
+  \IfNoValueTF{#1}
+  {#NOTE{#3}}
+  {\IfNoValueTF{#2}{#NOTE[#1]{#3}}{#NOTE[#1][#2]{#3}}}%
+}
 
 
 %----------
