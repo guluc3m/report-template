@@ -311,8 +311,111 @@ También puedes optar por usar el paquete [threeparttable](https://ctan.org/pkg/
 
 
 ### Ecuaciones
-<!-- incluír listado de ecuaciones -->
+LaTeX tiene un modo «matemátcias» donde se pueden introducir fórmulas
+matemáticas. Por ejemplo la fórmula `(x + 1)² = x² + 2x + 1`. Para introducirla
+en LaTeX se puede poner la fórmula entre signos de dólar estadounidense (`$`).
 
+```latex
+La fórmula $(x + 1)^2 = x^2 + 2x + 1$ es muy utilizada.
+```
+
+Cuando se compila, se redenriza como:
+
+```plain
+La fórmula (x + 1)² = x² + 2x + 1 es muy utilizada.
+```
+
+En este caso, la fórmula está en **la misma línea** que el resto del texto
+(_inline math mode_). Otras formas de entrar en modo mates en la misma línea
+es usando:
+
+* `$ ... $`
+* `\( ... \)`
+* `\begin{math} ... \end{math}`
+
+Pero la primera y la segunda, son las más utilizadas.
+
+También se puede poner centrada en la siguiente línea, utilizando:
+
+* `$$ ... $$`
+* `\[ ... \]`
+* `\begin{equation} ... \end{equation}`
+
+La única diferencia es que `\begin{equation}` numera la fórmula. Por ejemplo:
+
+```latex
+La fórmula
+
+\[ (x + 1)^2 = x^2 + 2x + 1 \]
+
+es muy utilizada.
+```
+
+Se renderiza como:
+
+```plain
+La fórmula
+
+   (x + 1)² = x² + 2x + 1
+   
+es muy utilizada.
+```
+
+Y con `\begin{equation}`
+
+```latex
+La fórmula
+
+\begin{equation}
+   (x + 1)^2 = x^2 + 2x + 1
+\end{equation}
+
+es muy utilizada.
+```
+
+Se renderiza como:
+
+```plain
+La fórmula
+
+   (x + 1)² = x² + 2x + 1                             (1)
+   
+es muy utilizada.
+```
+
+#### Símbolos matemáticos
+Los símbolos `+`, `=`, `<`, `>` o `-` se pueden utilizar tal cual. Pero con
+LaTeX tenemos mucha más flexibilidad. Unos cuantos ejemplos:
+
+* `·` es `\cdot`
+* `≠` es `\ne`, `≤` es `\le`, `≥` es `\ge`
+* `α` es `\alpha`, `β` es `\beta`, `γ` es `\gamma`...
+* `Γ` es `\Gamma`, `Δ` es `\Delta`, `Θ` es `\Theta`...
+
+Una forma y sencilla de buscar el símbolo que quieras es esta herramienta en
+línea. Dibujas el símbolo y te dice cómo 
+<https://detexify.kirelabs.org/classify.html>
+
+#### Fracciones, superíndices y subíndices
+Para introducir una fracción se usa `\frac{numerador}{denominador}`.
+
+El superíndice se hace con el acento circunflejo `^`. Si hay más de un símbolo
+en el exponente. Para que pille todos hay que rodearlos entre llaves (`{}`).
+Por ejemplo:
+
+* **x²**: `x^2`
+* **x⁴²**: `x^{42}`
+* **x⁴2**: `x^42`
+
+Para el subíndice se usa el guion bajo `_` y se comporta igual que el
+superíndice. Se puede poner subíndice y superíndice:
+
+* **x<sub>i</sub><sup>2</sup>**: `x_i^2`
+
+Si se usa con el símbolo de integral `\int`, de sumatorio `\sum` o productorio
+`\prod`:
+
+* **2Σ<sub>i=1</sub><sup>n</sup> i = n · (n + 1)**: `2\sum_{i=1}^n i = n \cdot (n + 1)`
 
 ### Bloques de código
 
