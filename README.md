@@ -120,6 +120,36 @@ mi carro me lo robaron, anoche cuando dormía
 ```
 
 
+### Listas
+Hay dos tipos de listas, enumeradas y no enumeradas:
+```latex
+\begin{enumerate}
+  \item Uno
+  \item Otro
+\end{enumerate}
+```
+```latex
+\begin{itemize}
+  \item Primero
+  \item Segundo
+\end{itemize}
+```
+
+También puedes anidarlas (incluso combinando enumeradas y no enumeradas):
+```latex
+\begin{enumerate}
+  \item Primero
+  \begin{itemize}
+    \item Primero A
+    \item Primero B
+  \end{itemize}
+  \item Segundo
+\end{enumerate}
+```
+
+Si quieres más control y configuración sobre las listas, échale un vistazo al paquete [enumitem](https://ctan.org/pkg/enumitem).
+
+
 ### Estructura del documento
 Puedes dividir jerárquicamente tu documento en distintos tipos de secciones. Dependiendo del tipo de documento, hay más o menos, pero para éste (`article`), tienes los siguientes:
 - `\part`: Parte; e.g. `I`. Empieza en una página nueva.
@@ -195,8 +225,8 @@ Veamos un ejemplo rápido para insertar una imagen _raster_ (PNG, JPG), aquí lo
 
 Los parámetros más importantes son los siguientes:
 - **Localización** (parámetro del entorno `figure`). Lo más recomendable es usar `htb`, el cual intenta colocar la figura en el mejor sitio, buscando que esté o aproximadamente aquí (`h`ere), al principio de la siguiente página (`t`op), o al final de la siguiente página (`b`ottom). Si quieres que la figura aparezca exactamente en este punto del texto, usa `H`.  
-  > [!NOTE]
-  > También se puede hacer uso de `\FloatBarrier` (del paquete [`placeins`](https://ctan.org/pkg/placeins)) para prevenir que cualquier imagen pase de ese punto. En esta plantilla, ninguna imagen pasará de la sección en la que se ha incrustado.
+> [!NOTE]
+> También se puede hacer uso de `\FloatBarrier` (del paquete [`placeins`](https://ctan.org/pkg/placeins)) para prevenir que cualquier imagen pase de ese punto. En esta plantilla, ninguna imagen pasará de la sección en la que se ha incrustado.
 - **Tamaño** (parámetro `width` de `\includegraphics`). Escala la figura hasta el tamaño especificado. Lo más recomendable es que sea un porcentaje del ancho del texto, por ejemplo, un 80% con `width=0.8\textwidth`.
 - **_Path_ del archivo** (argumento de `\includegraphics`). Esto indica dónde está localizado el archivo. En caso de haber configurado `\graphicspath` (lo cual es recomendable), la ruta es relativa a esa carpeta. En este caso, sería `figura.png`.
 - **_Caption_**. La leyenda de la figura. Pon aquí el texto que quieras, el cual también se verá reflejado en el índice de figuras en caso de existir. En caso de querer un texto diferente en el índice, usa `\caption[<texto del índice>]{<texto del documento>}`.
@@ -223,7 +253,7 @@ Para insertar imágenes SVG, usa `\includesvg` en lugar de `\includegraphics`, e
 
 
 #### Sub-figuras
-El paquete [`subcaption`](https://ctan.org/pkg/subcaption) incluye el entorno `subfigure`, para crear distintas sub-figuras dentro de la misma figura. Puedes especificar el tamaño de cada sub-figura, y lo recomendable es dejar el tamaño de las imágenes dentro de cada figura en el tamaño de línea (`\linewidth`).  
+El paquete [`subcaption`](https://ctan.org/pkg/subcaption) incluye el entorno `subfigure`, para crear distintas sub-figuras dentro de la misma figura. Puedes especificar el tamaño de cada sub-figura, y lo recomendable es dejar el tamaño de las imágenes dentro de cada figura en el tamaño de línea (`\linewidth`).
 
 Por ejemplo, para tener dos figuras una al lado de la otra:
 ```latex
@@ -250,6 +280,35 @@ Por ejemplo, para tener dos figuras una al lado de la otra:
 
 ### Tablas
 <!-- \tablenote -->
+Las tablas en LaTeX pueden llegar a ser algo complicadas. Si no quieres comerte la cabeza, puedes usar un generador de tablas como [Tables Generator](https://www.tablesgenerator.com/).
+
+La estructura general de una tabla es la siguiente:
+```latex
+\begin{table}
+    \centering
+    \begin{tabular}{lr}
+        \toprule
+        Nombre  &  País    \\
+        \midrule
+        Carlos  &  España  \\
+        Pierre  &  Francia \\
+        \bottomrule
+    \end{tabular}
+    \caption{Nombres}
+    \label{tab:nombres}
+\end{table}
+```
+- Se usa `\centering` para centrar la tabla
+- En el primer parámetro del entorno `tabular` es donde se especifican las columnas. En el ejemplo anterior, esto sería `lr`.  
+  Cada columna es representada por una letra, indicando su alineado, izquierda (`l`), derecha (`r`), o centrado (`c`). También se puede especificar el ancho de la columna (manteniendo el centrado) con `M{<ancho>}`, e.g. `M{0.5cm}`.  
+  Para añadir líneas entre columnas, se usa el caracter `|` en el mismo argumento, e.g. `|l|r|`.
+- Dentro del entorno `tabular` se especifican las filas de la tabla. Se delimitan los elementos de cada columna con el caracter `&`, y con `\\` se especifica el fin de la columna.  
+  También se pueden añadir líneas horizontales, como son `\hline` o `\toprule`, `\midrule` y `\bottomrule` (del paquete [booktabs](https://ctan.org/pkg/booktabs)).
+- Se le puede añadir una leyenda, en el entorno `table`, al igual que en las imágenes. Y por supuesto se pueden etiquetar.
+- Para hacer notas a pie de página desde las tablas, usa `\tablenote` (del paquete [tablefootnote](https://ctan.org/pkg/tablefootnote)).
+
+También puedes optar por usar el paquete [threeparttable](https://ctan.org/pkg/threeparttable) para generar tus tablas, el cual las organiza de una forma ligeramente distinta.
+
 
 ### Ecuaciones
 <!-- incluír listado de ecuaciones -->
@@ -259,15 +318,101 @@ Por ejemplo, para tener dos figuras una al lado de la otra:
 
 
 ### Organización del código
+Nadie quiere tener un sólo archivo `.tex` de 2.000 líneas... ¿verdad?
+
+LaTeX te permite separar cómodamente el contenido de tu documento en distintos archivos. Para ello, es recomendable usar el paquete [import](https://ctan.org/pkg/import).
+
+Incluír un archivo desde otro directorio es tan simple como usar `\includefrom{subdir/}{file.tex}`, o `\import{subdir/}{file.tex}` (para usar del mismo directorio, basta con dejar el primer argumento vacío, e.g. `\import{}{file.tex})`).
+
+> [!NOTE]
+> La principal diferencia entre `\includefrom` e `\import` es que `\includefrom` compila los distintos archivos de forma separada, y los reutiliza si no han cambiado, reduciendo considerablemente el tiempo de compilación al hacer cambios en documentos grandes.
+> Sin embargo, debido a esto, `\includefrom` siempre añade los contenidos del archivo en una página nueva, mientras que `\import` no.
+
+Es recomendable organizar tu código de la siguiente manera:
+```
+report/
+├─ img/
+├─ parts/
+│  ├─ introduction.tex
+│  ├─ development.tex
+│  ├─ conclusions.tex
+├─ report.tex
+├─ references.bib
+├─ uc3mreport.cls
+```
+
+Y, en `report.tex`, incluír los archivos dentro del entorno `report`:
+```latex
+\begin{report}
+  \includefrom{parts/}{introduction.tex}
+  \includefrom{parts/}{development.tex}
+  \includefrom{parts/}{conclusions.tex}
+  ...
+\end{report}
+```
 
 
 ### Macros
+Las macros son pequeñas funciones que puedes definir y usar a lo largo de tu código. Son útiles para automatizar cosas, o añadir funcionalidades. Los paquetes de LaTeX están llenos de ellas.
+
+Se definen con `\newcommand`, e.g.:
+```latex
+\newcommand{\helloworld}{Hello, world!}
+```
+
+La macro anterior incluiría el texto `Hello, world!` en el sitio donde la llames con `\helloworld`.
+
+Las macros también admiten argumentos. Especificas el número de argumentos entre corchetes en la definición:
+```latex
+\newcommand{\hello}{Hello, #1 and #2!}[2]
+```
+La macro ahora toma dos parámetros, los cuales son sustituídos por el `#1` (primer argumento) y el `#2` (segundo argumento), al llamarla con `\hello{Jose}{Pepe}`, lo que resultaría en `Hello, Jose and Pepe!`.
+
+También puedes especificar argumentos opcionales, los cuales tienen un valor por defecto:
+```latex
+\newcommand{\hello}{#1, #2 and #3!}[2][Hello]
+```
+El argumento opcional es siempre el primero, en el caso anterior sería `Hello`. Para sobreescribir el opcional, lo especificamos entre corchetes: `\hello[Hola]{Jose}{Pepe}`, lo que resultaría en `Hola, Jose and Pepe!`.
 
 
 ### Bibliografía
+Para añadir referencias y bibliografía en LaTeX se usa el paquete [biblatex](https://ctan.org/pkg/biblatex). Ésta plantilla está configurada para seguir el estilo IEEE.
+
+Éste paquete te permite usar archivos `.bib` para guardar todas las referencias, y para cargarlo necesitas especificarlo con `\addbibresource{<file>}`. Después, puedes imprimir la bibliografía con `\printbibliography`. En `report.tex` tienes esto ya preparado para ser configurado.
+> [!TIP]
+> Si no quieres incluír bibliografía, borra estas secciones de `report.tex`
+
+#### Añadir referencias
+Las referencias se guardan en el `.bib`. Hay distintos tipos de referencias, dependiendo de lo que estés referenciando, pero en general siguen la misma estructura:
+```bibtex
+@book{cicero45finibus,
+  author         = {Cicero, Marcus Tullius},
+  title          = {De Finibus Bonorum Et Malorum},
+  year           = {45 BCE}
+  ...
+}
+```
+Lo primero es el tipo de referencia, lo cual afecta a cómo se pondrá en la bibliografía. Luego viene la _key_, o el ID por el que haremos la referencia en el texto. Después vienen los distintos parámetros. Rellena los que puedas y borra el resto.
+
+> [!TIP]
+> En `references.bib` tienes plantillas para los tipos de referencias más usados: libros (`book`), artículos (`article`), páginas web (`online`), y estándares IEEE (`techreport`).
+
+> [!TIP]
+> Muchos recursos, como [Google Scholar](https://scholar.google.com/) o la [biblioteca de la UC3M](https://bibliotecas.uc3m.es/) te permiten exportar las referencias directamente en formato BibTeX, para poder pegarlas directamente en `references.bib`.
+
+> [!TIP]
+> Muchos artículos publicados online cuentan con un [DOI](https://www.doi.org/), un identificador global. Es recomendable rellenar esta propiedad cuando la encuentres, puesto que permite acceder cómodamente a ellos.
+
+#### Citar
+En el texto, se cita con `\cite{key}`, incluyendo la _key_ del elemento a citar.
+
+> [!TIP]
+> `\cite` usa el estilo de cita por defecto del documento. Si quieres usar uno específico, tienes `\parencite` y `\supercite`.  
+> Si quieres incluír el texto en tu cita, usa `\textcquote{key}{text}`.
 
 
 ### Apéndices
+Usa el entorno `appendices` para definir tus apéndices. Para cada apéndice, usa una `\section`.
 
 
 

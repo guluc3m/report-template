@@ -22,6 +22,8 @@
 *.mtc0
 *.lof
 *.lot
+*.bbl-SAVE-ERROR
+*.bcf-SAVE-ERROR
 
 svg-inkscape/
 _markdown_report/
