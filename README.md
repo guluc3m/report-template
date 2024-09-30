@@ -259,20 +259,17 @@ Por ejemplo, para tener dos figuras una al lado de la otra:
 ```latex
 \begin{figure}[htb]
   \centering
-
-  \begin{subfigure}{.5\textwidth}
+  \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\linewidth]{fig1.png}
     \caption{Una cosa}
     \label{fig:fig1}
-  \end{subfigure}%
-
-  \begin{subfigure}{.5\textwidth}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
     \centering
     \includegraphics[width=\linewidth]{fig2.png}
     \caption{Otra cosa}
     \label{fig:fig2}
   \end{subfigure}
-
   \caption{Dos cosas}
 \end{figure}
 ```
