@@ -464,13 +464,13 @@ La macro anterior incluiría el texto `Hello, world!` en el sitio donde la llame
 
 Las macros también admiten argumentos. Especificas el número de argumentos entre corchetes en la definición:
 ```latex
-\newcommand{\hello}{Hello, #1 and #2!}[2]
+\newcommand{\hello}[2]{Hello, #1 and #2!}
 ```
 La macro ahora toma dos parámetros, los cuales son sustituídos por el `#1` (primer argumento) y el `#2` (segundo argumento), al llamarla con `\hello{Jose}{Pepe}`, lo que resultaría en `Hello, Jose and Pepe!`.
 
 También puedes especificar argumentos opcionales, los cuales tienen un valor por defecto:
 ```latex
-\newcommand{\hello}{#1, #2 and #3!}[2][Hello]
+\newcommand{\hello}[2][Hello]{#1, #2 and #3!}
 ```
 El argumento opcional es siempre el primero, en el caso anterior sería `Hello`. Para sobreescribir el opcional, lo especificamos entre corchetes: `\hello[Hola]{Jose}{Pepe}`, lo que resultaría en `Hola, Jose and Pepe!`.
 
