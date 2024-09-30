@@ -470,7 +470,7 @@ La macro ahora toma dos parámetros, los cuales son sustituídos por el `#1` (pr
 
 También puedes especificar argumentos opcionales, los cuales tienen un valor por defecto:
 ```latex
-\newcommand{\hello}[2][Hello]{#1, #2 and #3!}
+\newcommand{\hello}[3][Hello]{#1, #2 and #3!}
 ```
 El argumento opcional es siempre el primero, en el caso anterior sería `Hello`. Para sobreescribir el opcional, lo especificamos entre corchetes: `\hello[Hola]{Jose}{Pepe}`, lo que resultaría en `Hola, Jose and Pepe!`.
 
