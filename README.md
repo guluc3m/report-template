@@ -131,14 +131,14 @@ El otro día...
 Hay dos tipos de listas, enumeradas y no enumeradas:
 ```latex
 \begin{enumerate}
-  \item Uno
-  \item Otro
+  \item Primero
+  \item Segundo
 \end{enumerate}
 ```
 ```latex
 \begin{itemize}
-  \item Primero
-  \item Segundo
+  \item Uno
+  \item Otro
 \end{itemize}
 ```
 
