@@ -196,7 +196,7 @@ Usa `\newpage` para crear una página nueva.
 ### Referencias
 Puedes marcar cualquier punto del documento para referenciarlo más tarde. Ésto es parte del paquete [hyperref](https://ctan.org/pkg/hyperref?lang=en).
 
-Puedes crear una marca con `label{<id>}`, y luego referenciarlo de varias formas. Dependiendo de dónde esté la marca, si es un párrafo, una figura, una tabla, una ecuación, etc., se comporta de manera ligeramente distinta.
+Puedes crear una marca con `\label{<id>}`, y luego referenciarlo de varias formas. Dependiendo de dónde esté la marca, si es un párrafo, una figura, una tabla, una ecuación, etc., se comporta de manera ligeramente distinta.
 - `\ref{<id>}`: Pone el número de la sección/figura/etc. a la que se refiere.
 - `\nameref{<id>}`: Pone el nombre de la sección/figura/etc. a la que se refiere.
 - `\pageref{<id>}`: Pone el número de página de la sección/figura/etc. a la que se refiere.
