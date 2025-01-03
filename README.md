@@ -119,6 +119,13 @@ Mi carro me lo robaron, estando de romería\\
 mi carro me lo robaron, anoche cuando dormía
 ```
 
+Para evitar la sangría (indentación) de la primera línea de un párrafo, se usa `\noindent`:
+```latex
+\noindent
+He dicho.
+
+El otro día...
+```
 
 ### Listas
 Hay dos tipos de listas, enumeradas y no enumeradas:
