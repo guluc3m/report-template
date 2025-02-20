@@ -536,6 +536,10 @@ Algunas extensiones útiles:
 > Si estás usando esta extensión, por favor añade el parámetro `-shell-escape` (ver [LaTeX Workshop FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk))
 
 > [!TIP]
+> Puedes cambiar el directorio de salida en `latex-workshop.latex.outDir`, poniéndolo por ejemplo a `%DIR%/build` (ver [LaTeX Workshop Wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#latex-workshoplatexoutdir)).  
+> Si te encuentras con problemas al compilar, asegúrate de que existen todas las subcarpetas (e.g. `build/parts/`).
+
+> [!TIP]
 > Puedes habilitar el conteo de palabras estableciendo `latex-workshop.wordcount` a `onSave` en los ajustes. Más información [aquí](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#counting-words).
 
 - [LTeX+](https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus): Corrector ortográfico.
