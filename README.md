@@ -67,7 +67,13 @@ La clase también cuenta con un entorno predefinido:
 Primero debes instalar LaTeX.
 
 - Para Linux, instala `texlive-full` (tarda un rato).
-- Para Windows, instala [MiKTeX](https://miktex.org/download#win), asegúrate de añadirlo al `PATH`, e instala [Strawberry Perl](https://strawberryperl.com/). Si no está ya instalado, abre la MikTeX Console e instala el paquete `latexmk` desde la pestaña `Packages`.
+- Para Windows, instala [MiKTeX](https://miktex.org/download#win), asegúrate de añadirlo al `PATH`, e instala [Strawberry Perl](https://strawberryperl.com/).  
+  Con [winget](https://github.com/microsoft/winget-cli):
+  ```powershell
+  winget install MiKTeX.MiKTeX StrawberryPerl.StrawberryPerl
+  ```
+  Una vez instalado MiKTeX, ábrelo, ve a `Updates` y actualiza todos los paquetes.
+
 - Para MacOS, instala [MacTeX](https://www.tug.org/mactex/mactex-download.html) e instala `latexmk` con:
     ```
     sudo tlmgr install latexmk
