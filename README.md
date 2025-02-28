@@ -90,11 +90,31 @@ Para compilar la memoria, usa:
 latexmk -cd -shell-escape -pdf report.tex
 ```
 
+> [!TIP]
+> Opcionalmente, puedes especificar el directorio de salida con el parámetro `-outdir`, e.g. `-outdir=build`
+> 
+> Si te encuentras con problemas al compilar, asegúrate de que existen todas las subcarpetas (e.g. `build/parts/`).
 
-## How to...?
-Obviamente, _Google/DuckDuckGo es tu amigo_, así que no dudes en preguntarle cosas. También puedes contar con la [documentación de Overleaf](https://www.overleaf.com/learn), una magnífica herramienta donde aprender cosas de LaTeX. Más allá de ellos, [LaTeX Stack Exchange](https://tex.stackexchange.com/) es el StackOverflow para LaTeX, un foro para hacer preguntas y encontrar respuestas.
+
+## How to LaTeX?
+Obviamente, _Google/DuckDuckGo es tu amigo_, así que no dudes en preguntarle cosas. También puedes contar con la [documentación de Overleaf](https://www.overleaf.com/learn), una magnífica herramienta donde aprender cosas de LaTeX. Más allá de ellos, [LaTeX Stack Exchange](https://tex.stackexchange.com/) es el [StackOverflow](http://stackoverflow.com/) para LaTeX, un foro para hacer preguntas y encontrar respuestas.
 
 Aquí comentaremos algunos paquetes y trozos de código que hemos encontrado útiles a la hora de realizar las memorias. [CTAN (Comprehensive TeX Archive Network)](https://ctan.org/) es el repositorio donde se alojan todos los paquetes de LaTeX, y todos ellos incluyen documentación. Si te atascas con algún paquete, o quieres investigar más, búscalo aquí.
+
+
+### Nociones generales
+LaTeX (técnicamente TeX) es un lenguaje de programación que se programa en archivos de [texto plano](https://en.wikipedia.org/wiki/Plaintext) y, por lo tanto, usa caracteres especiales para significar cosas especiales:
+- Comandos empiezan con `\`
+- Entornos con `\begin{<env>} ... \end{<env>}`
+- Comentarios con `%`
+- Los caracteres especiales deben ser escapados:
+   - `#`, `$`, `%`, `&`, `_`, `{`, `}` se escapan con `\`, e.g. `\_`
+   - `\`, `^`, `~` requieren un comando específico: `\textbackslash`, `\textasciicircum`, `\textasciitilde`
+
+> [!TIP]
+> El 80% de los errores de compilación de LaTeX ocurren porque no se han escapado caracteres especiales, especialmente `_` y `$`.
+>
+> Si te encuentras con un error en una zona de texto normal, comprueba si has escapado estos caracteres.
 
 
 ### Formato del texto
