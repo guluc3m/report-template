@@ -32,11 +32,11 @@ El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar l
     - `\professor`: Nombre del profesor responsable.  
       Puede ser omitido.
     - `\author`: Autor o autores. Usar `\\` para separarlos.
-    - `\team`: Nombre del equipo, e.g. `Equipo 69`.
+    - `\team`: Nombre del equipo, e.g. `Equipo 69`.  
       Puede ser omitido.
-    - `\shortauthor`: Identificación pequeña del autor o autores, la cual aparecerá en el encabezado de cada página. Puede ser el nombre del equipo, e.g. `Equipo 02`, o el nombre corto del autor, e.g. `J. Ibarra` (o `\abbreviateauthor{Javier}{Ibarra Ramos}`).
+    - `\shortauthor`: Identificación pequeña del autor o autores, la cual aparecerá en el encabezado de cada página. Puede ser el nombre del equipo, e.g. `Equipo 02`, o el nombre corto del autor, e.g. `J. Ibarra` (o `\abbreviateauthor{Javier}{Ibarra Ramos}`).  
       Puede ser omitido.
-    - `\shorttitle`: Formato corto del título que poner en el _header_ en lugar de `<lab>: <title>`.
+    - `\shorttitle`: Formato corto del título que poner en el _header_ en lugar de `<lab>: <title>`.  
       Puede ser omitido.
 
 
@@ -310,7 +310,6 @@ Por ejemplo, para tener dos figuras una al lado de la otra:
 
 
 ### Tablas
-<!-- \tablenote -->
 Las tablas en LaTeX pueden llegar a ser algo complicadas. Si no quieres comerte la cabeza, puedes usar un generador de tablas como [Tables Generator](https://www.tablesgenerator.com/).
 
 La estructura general de una tabla es la siguiente:
@@ -339,6 +338,30 @@ La estructura general de una tabla es la siguiente:
 - Para hacer notas a pie de página desde las tablas, usa `\tablenote` (del paquete [tablefootnote](https://ctan.org/pkg/tablefootnote)).
 
 También puedes optar por usar el paquete [threeparttable](https://ctan.org/pkg/threeparttable) para generar tus tablas, el cual las organiza de una forma ligeramente distinta.
+
+Si la tabla es demasiado ancha:
+- Usar [`adjustbox`](https://ctan.org/pkg/adjustbox) alrededor del `tabular`:
+  ```latex
+  \usepackage{adjustbox}
+  ```
+  ```latex
+  \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{...} 
+      % [...]
+    \end{tabular}
+  \end{adjustbox}
+  ``` 
+- Meterla en una página horizontal con [`pgfplots`](https://ctan.org/pkg/pgfplots):
+  ```latex
+  \usepackage{pgfplots}
+  ```
+  ```latex
+  \begin{landscape}
+    \ttabox[\FBwidth]
+      {...}
+      {...}
+  \end{landscape}
+  ``` 
 
 
 ### Ecuaciones
@@ -573,9 +596,3 @@ Aquí te dejamos algunos ejemplos de memorias hechas con esta plantilla:
 - [ldcas-uc3m/TAC-P1](https://github.com/ldcas-uc3m/TAC-P1/tree/main/report) (usando una versión temprana de la plantilla)
 - [ldcas-uc3m/VA-PF](https://github.com/ldcas-uc3m/VA-PF/tree/main/report)
 
-
-<!--
-## Más información
-- [Documentación de Overleaf](https://www.overleaf.com/learn): Una magnífica herramienta donde aprender cosas de LaTeX.
-- [The Comprehensive TeX Archive Network](https://ctan.org/?lang=en): Un repositorio de paquetes de LaTeX, con su documentación.
--->
