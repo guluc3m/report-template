@@ -64,7 +64,7 @@ La clase también cuenta con un entorno predefinido:
 
 
 ## Compilación
-Primero debes instalar LaTeX.
+Primero debes instalar [LaTeX](https://www.latex-project.org/).
 
 - Para Linux, instala `texlive-full` (tarda un rato).
 - Para Windows, instala [MiKTeX](https://miktex.org/download#win), asegúrate de añadirlo al `PATH`, e instala [Strawberry Perl](https://strawberryperl.com/).  
