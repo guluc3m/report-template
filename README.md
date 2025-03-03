@@ -74,9 +74,10 @@ Primero debes instalar [LaTeX](https://www.latex-project.org/).
   ```
   Una vez instalado MiKTeX, ábrelo, ve a `Updates` y actualiza todos los paquetes.
 
-- Para MacOS, instala [MacTeX](https://www.tug.org/mactex/mactex-download.html) e instala `latexmk` con:
+- Para MacOS, instala [MacTeX](https://www.tug.org/mactex/mactex-download.html).  
+    Con [brew](https://brew.sh):
     ```
-    sudo tlmgr install latexmk
+    brew install --cask mactex
     ```
 
 > [!IMPORTANT]
