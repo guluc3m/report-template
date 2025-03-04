@@ -26,7 +26,7 @@ El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar l
     - `\degree`: Grado que se cursa, e.g. `Ingeniería Informática`
     - `\subject`: Asignatura.
     - `\group`: Número del grupo, e.g. `89`.
-    - `\year`: Año académico, e.g. `2023-2024`.
+    - `\academicyear`: Año académico, e.g. `2023-2024`.
     - `\lab`: Denominación del laboratorio o práctica, e.g. `Práctica 0`.
     - `\title`: Título del laboratorio o práctica.
     - `\professor`: Nombre del profesor responsable.  

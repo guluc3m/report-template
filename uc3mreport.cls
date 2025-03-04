@@ -105,7 +105,7 @@
 	\newcommand{\subject}[1]{\gdef\@subject{#1}}  % name of the subject
 	\newcommand{\group}[1]{\gdef\@group{#1}}  % group number
 	\newcommand{\team}[1]{\gdef\@team{#1}}  % team name (optional)
-	\renewcommand{\year}[1]{\gdef\@year{#1}}  % academic year
+	\newcommand{\academicyear}[1]{\gdef\@academicyear{#1}}  % academic year
 	\newcommand{\lab}[1]{\gdef\@lab{#1}}  % Lab 1, Exercise 3, etc.
 	\newcommand{\professor}[1]{\gdef\@professor{#1}}  % name of the professor (optional)
 	\newcommand{\shortauthor}[1]{\gdef\@shortauthor{#1}}  % teamname, or several authors names (optional)
@@ -437,7 +437,7 @@
 				\begin{Large}
 					\textsl{\@degree}\\
 					\medskip
-					\@subject~\@year\\
+					\@subject~\@academicyear\\
 					\@text@group~\@group
 				\end{Large}
 				% \vspace{1.5cm}
