@@ -64,14 +64,17 @@ La clase también cuenta con un entorno predefinido:
 
 
 ## Compilación
-Primero debes instalar [LaTeX](https://www.latex-project.org/).
+Primero debes instalar LaTeX.
 
-- Para Linux, instala `texlive-full` (tarda un rato).
+- Para Linux, instala [TeX Live](https://www.tug.org/texlive/):
+    - [APT](https://wiki.debian.org/AptCLI) ([Debian](https://www.debian.org/)/[Ubuntu](https://ubuntu.com/)): [`texlive-full`](https://packages.debian.org/search?keywords=texlive-full&searchon=names&suite=stable&section=all)
+    - [DNF](https://dnf.readthedocs.io/en/latest/) ([Fedora](https://fedoraproject.org/)): [`texlive-scheme-full`](https://packages.fedoraproject.org/pkgs/texlive/texlive-scheme-full/)
+    - [AUR](https://aur.archlinux.org/) ([Arch](https://archlinux.org/)): [`texlive-full`](https://aur.archlinux.org/packages/texlive-full)
 - Para Windows, instala [MiKTeX](https://miktex.org/download#win), asegúrate de añadirlo al `PATH`, e instala [Strawberry Perl](https://strawberryperl.com/).  
-  Con [winget](https://github.com/microsoft/winget-cli):
-  ```powershell
-  winget install MiKTeX.MiKTeX StrawberryPerl.StrawberryPerl
-  ```
+    Con [winget](https://github.com/microsoft/winget-cli):
+    ```powershell
+    winget install MiKTeX.MiKTeX StrawberryPerl.StrawberryPerl
+    ```
   Una vez instalado MiKTeX, ábrelo, ve a `Updates` y actualiza todos los paquetes.
 
 - Para MacOS, instala [MacTeX](https://www.tug.org/mactex/mactex-download.html).  
