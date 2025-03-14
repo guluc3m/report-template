@@ -1,8 +1,8 @@
 \documentclass[es]{uc3mreport}
 
 
+\usepackage{import}  % import TeX files
 \usepackage{lipsum}  % generates dummy text
-\usepackage{import}
 
 
 
@@ -13,7 +13,8 @@
 
 \degree{Grado en Linux}
 \subject{LaTeXología}
-\academicyear{2024-2025}  % academic year
+% \shortsubject{LTX}  % optional
+\academicyear{2024-2025}
 \group{69}
 \author{
     Tu Nombre Aquí -- 100042069\\
@@ -47,9 +48,11 @@
         \subsection{Mi subsección}
         \lipsum[2-4]\footnote{Caca de la vaca Paca.}
 
-
         \subsubsection{Mi subsubsección}
         \lipsum[2-4]
+
+        % \import{parts/}{whatever.tex}
+
     \end{report}
 
 

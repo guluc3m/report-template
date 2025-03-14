@@ -110,6 +110,7 @@
 	\newcommand{\professor}[1]{\gdef\@professor{#1}}  % name of the professor (optional)
 	\newcommand{\shortauthor}[1]{\gdef\@shortauthor{#1}}  % teamname, or several authors names (optional)
 	\newcommand{\shorttitle}[1]{\gdef\@shorttitle{#1}}  % short title (optional)
+	\newcommand{\shortsubject}[1]{\gdef\@shortsubject{#1}} % short subject (optional)
 \makeatother
 
 
@@ -266,7 +267,10 @@
 		}
 		\fancyhead[R]{
 			\color{azulUC3M}
-			\@subject, \@text@group@abbr~\@group
+			\ifdef{\@shortsubject}
+				{\@shortsubject}
+				{\@subject}%
+			,~\@text@group@abbr~\@group
 		}
 		% footer
 		\renewcommand{\footrulewidth}{0.4pt}

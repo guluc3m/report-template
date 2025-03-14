@@ -21,22 +21,23 @@ El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar l
     ```
 > [!NOTE]
 > Ten en cuenta que la portada requiere de imágenes que serán buscadas en la raíz de esta carpeta
-- La portada y otros elementos dependen de la configuración de los "distintos atributos":
+- La portada y otros elementos dependen de la configuración de los distintos atributos:
     - `\author`: Autor, o autores. Si se añade más de uno, añade `\\` entre nombres. Es recomendable añadir también el NIA después del nombre, y precedido por `--`.
-    - `\degree`: Grado que se cursa, e.g. `Ingeniería Informática`
+    - `\degree`: Grado que se cursa, e.g. _Ingeniería Informática_
     - `\subject`: Asignatura.
-    - `\group`: Número del grupo, e.g. `89`.
-    - `\academicyear`: Año académico, e.g. `2023-2024`.
+    - `\group`: Número del grupo, e.g. _89_.
+    - `\academicyear`: Año académico, e.g. _2023-2024_.
     - `\lab`: Denominación del laboratorio o práctica, e.g. `Práctica 0`.
     - `\title`: Título del laboratorio o práctica.
     - `\professor`: Nombre del profesor responsable.  
       Puede ser omitido.
-    - `\author`: Autor o autores. Usar `\\` para separarlos.
-    - `\team`: Nombre del equipo, e.g. `Equipo 69`.  
+    - `\team`: Nombre del equipo, e.g. _Equipo 69_.  
       Puede ser omitido.
-    - `\shortauthor`: Identificación pequeña del autor o autores, la cual aparecerá en el encabezado de cada página. Puede ser el nombre del equipo, e.g. `Equipo 02`, o el nombre corto del autor, e.g. `J. Ibarra` (o `\abbreviateauthor{Javier}{Ibarra Ramos}`).  
+    - `\shortauthor`: Identificación corta del autor o autores, la cual aparecerá en el encabezado de cada página. Puede ser el nombre del equipo, e.g. _Equipo 02_, o el nombre corto del autor, e.g. _J. Ibarra_ (o `\abbreviateauthor{Javier}{Ibarra Ramos}`).  
       Puede ser omitido.
     - `\shorttitle`: Formato corto del título que poner en el _header_ en lugar de `<lab>: <title>`.  
+      Puede ser omitido.
+    - `\shortsubject`: Identificación corta de la asignatura (normalmente, las siglas, e.g. _T.A.L.F._), la cual aparecerá en el encabezado de cada página. Típicamente usado cuando el título y/o el nombre de la asignatura.  
       Puede ser omitido.
 
 
