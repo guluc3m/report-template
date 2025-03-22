@@ -1,0 +1,84 @@
+\documentclass[es]{uc3mreport}
+
+
+\usepackage{import}  % import TeX files
+\usepackage{lipsum}  % generates dummy text
+
+
+
+% general config
+
+\graphicspath{{img/}}  % Images folder
+\addbibresource{references.bib}  % bibliography file
+
+\degree{${grado}}
+\subject{${asignatura}}
+% \shortsubject{LTX}  % optional
+\academicyear{${anio-academico}}
+\group{${grupo}}
+\author{
+    $for(autores)$
+      ${autores.nombre} -- ${autores.nia}
+      $sep$\\
+    $endfor$
+}
+
+$if(equipo)$
+  \team{${equipo}}
+$endif$
+
+$if(autor-corto)$
+\shortauthor{
+  $for(autor-corto)$
+    \abbreviateauthor{${autor-corto.abreviado}}{${autor-corto.largo}}
+    $sep$, 
+  $endfor$
+}
+$endif$
+
+\lab{${nombre-lab}}
+\title{${titulo}}
+
+$if(subtitulo)$
+  \shorttitle{${subtitulo}}
+$endif$
+$if(profesor)$
+  \professor{${profesor}}
+$endif$
+
+
+% report
+
+\begin{document}
+    \makecover
+
+    \tableofcontents
+    % \listoffigures
+    % \listoftables
+
+    % contenidos
+    \begin{report}
+
+      % Variable de PANDOC para insertar el contenido del documento
+      $body$
+
+    \end{report}
+
+    $if(referencias)$
+      % bibliography
+      \label{bibliography}
+      \part{Referencias}
+      \printbibliography
+      % \printbibliography[heading=bibintoc,title={Referencias}]  % alternative
+    $endif$
+
+    $if(apendices)$
+      % appendices
+      \begin{appendices}
+          \part{Apéndices}  % optional
+          \section{Mi apéndice}
+          \lipsum[1]
+      \end{appendices}
+    $endif$
+
+\end{document}
