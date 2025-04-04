@@ -600,3 +600,8 @@ Aquí te dejamos algunos ejemplos de memorias hechas con esta plantilla:
 - [ldcas-uc3m/TAC-P1](https://github.com/ldcas-uc3m/TAC-P1/tree/main/report) (usando una versión temprana de la plantilla)
 - [ldcas-uc3m/VA-PF](https://github.com/ldcas-uc3m/VA-PF/tree/main/report)
 
+
+## Otros recursos
+- Latex básico desde 0: [https://github.com/Patataman/LatexBasic](https://github.com/Patataman/LatexBasic)
+- Ejemplos de gráficas (bueno para referencias): [https://github.com/f0nzie/tikz_bars](https://github.com/f0nzie/tikz_bars)
+
