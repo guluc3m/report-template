@@ -601,7 +601,20 @@ Aquí te dejamos algunos ejemplos de memorias hechas con esta plantilla:
 - [ldcas-uc3m/VA-PF](https://github.com/ldcas-uc3m/VA-PF/tree/main/report)
 
 
-## Otros recursos
-- Latex básico desde 0: [https://github.com/Patataman/LatexBasic](https://github.com/Patataman/LatexBasic)
-- Ejemplos de gráficas (bueno para referencias): [https://github.com/f0nzie/tikz_bars](https://github.com/f0nzie/tikz_bars)
+## Más información
+
+### Documentación
+- [Overleaf knowledge base](https://www.overleaf.com/learn)
+- [LaTeX - Wikibooks](https://en.wikibooks.org/wiki/LaTeX)
+- [CTAN (Comprehensive TeX Archive Network)](https://ctan.org/)
+
+### Tutoriales/charlas
+- [Patataman/LatexBasic](https://github.com/Patataman/LatexBasic): Curso de LaTeX básico desde 0
+- [L. Prieto - Generación de documentos en LaTeX](https://youtu.be/cFieGJljKog) (2021)
+- [L. D. Casais - Memorias de TFG en LaTeX](https://github.com/rajayonin/latex-thesis/blob/main/transparencias.pdf) (2025)
+
+### Otros recursos
+- [f0nzie/tikz_bars](https://github.com/f0nzie/tikz_bars): Ejemplos de gráficas (bueno para referencias)
+- [ldcas-uc3m/thesis-template](https://github.com/ldcas-uc3m/TFG): Plantilla para TFG/TFM
+- [LaTeX Stack Exchange](https://tex.stackexchange.com/)
 
