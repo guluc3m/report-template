@@ -6,6 +6,16 @@ La memoria consiste de un archivo principal [`report.tex`](report.tex), y un arc
 
 El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar la clase `uc3mreport`. Ésta clase está basada en la clase `article` de LaTeX, con tamaño de letra 12.
 
+También una plantilla [`report-pandoc.tex`](report-pandoc.tex) para pasar a [Pandoc](https://pandoc.org/) está presente en el repostiorio. Esta se puede usar para escribir el report en Markdown, y mediante YAML en la cabecera del archivo, pasarle todos los parámetros para rellenar automaticamente el documento.
+
+Para compilar archivos usando Pandoc, hay que usar en la terminal:
+
+```bash
+pandoc report.md -s --template report-pandoc.tex --lua-filter report-filter.lua -o report.tex && latexmk -shell-escape -pdf report.tex
+```
+
+> [!TIP]
+> El comando anterior está separado en dos partes, la transformación de Markdown a LaTeX usando Pandoc, y el de compilación a PDF desde LaTeX. Para comprobar o modificar el output de LaTeX antes de convertirlo a PDF, borra la segunda parte ejecutada con `&&`.
 
 ### Configuración
 - Puedes configurar el idioma de la memoria al incluir la clase. Esto afectará a algunas cosas como el nombre del índice.
@@ -39,6 +49,49 @@ El archivo [`report.tex`](report.tex) actual es una simple plantilla para usar l
       Puede ser omitido.
     - `\shortsubject`: Identificación corta de la asignatura (normalmente, las siglas, e.g. _T.A.L.F._), la cual aparecerá en el encabezado de cada página. Típicamente usado cuando el título y/o el nombre de la asignatura.  
       Puede ser omitido.
+
+
+#### Variables de Pandoc
+
+Todas las variables están mencionadas en el apartado superior. Un ejemplo de cabezera que se puede usar es:
+
+```yaml
+---
+grado: Informática
+asignatura: Sistemas Operativos
+anio-academico: 2069
+grupo: 69420
+autores:
+    - nombre: Pepito
+      nia: 100
+    - nombre: Papeto
+      nia: 200
+nombre-lab: Hilos
+titulo: uwu
+---
+```
+
+El primer set de variables es el obligatorio para que el archivo se pueda compilar, mientras que el segundo es completamente opcional:
+
+- `grado`
+- `asignatura`
+- `anio-academico`
+- `grupo`
+- `autores`
+  - `nombre`
+  - `nia`
+- `nombre-lab`
+- `titulo`
+
+Opcionales:
+- `autor-corto`
+  - `abreviado`
+  - `largo`
+- `equipo`
+- `subtitulo`
+- `profesor`
+- `apendices`: Cualquiér valor para considerarlo como verdadero
+- `referencias`: Cualquiér valor para considerarlo como verdadero
 
 
 ### Estilos de página
